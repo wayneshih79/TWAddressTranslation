@@ -21,7 +21,7 @@ class Initializer implements CommandLineRunner {
 
     @Override
     public void run(String... strings) {
-        Stream.of("Denver JUG", "Utah JUG", "Seattle JUG",
+        Stream.of("Denver JUG", "Utah JUG", "Seattle JUG JUG",
                 "Richmond JUG").forEach(name ->
                 repository.save(new Group(name))
         );
