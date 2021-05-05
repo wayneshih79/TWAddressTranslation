@@ -36,11 +36,11 @@ public class AddressProcessUtil {
         String pattern = "(?<zipcode>(^\\d{5}|^\\d{3})?)" +
                 "(?<city>\\D+?[縣市])?" +
                 "(?<region>\\D+?(市區|鎮區|鎮市|[鄉鎮市區]))?" +
-                "(?<village>\\D+?[村里巷])?" +
+                "(?<village>\\D+?[村里])?" +
                 //"(?<neighbor>\\d+[鄰])?" +
                 "(?<road>\\S+?([路街道段]|村路))?" +
                 "(?<section>\\S?段)?" +
-                //"(?<lane>\\d+)?" +
+                "(?<lane>\\D+?巷)?" +
                 "(?<alley>\\S+弄)?" +
                 "(?<no>\\d+號?)?" +
                 //"(?<seq>-\\d+?(號))?" +
@@ -59,7 +59,7 @@ public class AddressProcessUtil {
 //            System.out.println("Found neighbor value: " + m.group("neighbor") );
             System.out.println("Found road value: " + m.group("road") );
             System.out.println("Found section value: " + m.group("section") );
-//            System.out.println("Found lane value: " + m.group("lane") );
+            System.out.println("Found lane value: " + m.group("lane") );
             System.out.println("Found alley value: " + m.group("alley") );
             System.out.println("Found no value: " + m.group("no") );
 //            System.out.println("Found seq value: " + m.group("seq") );
@@ -80,6 +80,7 @@ public class AddressProcessUtil {
                 .zipcode(m.group("zipcode"))
                 .road(m.group("road"))
                 .section(m.group("section"))
+                .lane(m.group("lane"))
                 .alley(m.group("alley"))
                 .no(m.group("no"))
                 .zipcode(m.group("zipcode"))

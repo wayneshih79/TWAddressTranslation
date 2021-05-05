@@ -36,6 +36,10 @@ public class Address {
     private String section;
     private String tranSection;
 
+    /** 巷 **/
+    private String lane;
+    private String tranLane;
+
     /** 弄 **/
     private String alley;
     private String tranAlley;

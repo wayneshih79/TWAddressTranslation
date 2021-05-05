@@ -25,6 +25,7 @@ public class AddressService {
                 StringUtils.defaultString(address.getVillage()) +
                 StringUtils.defaultString(address.getRoad()) +
                 StringUtils.defaultString(address.getSection()) +
+                StringUtils.defaultString(address.getLane()) +
                 StringUtils.defaultString(address.getAlley())
                 )
         );
