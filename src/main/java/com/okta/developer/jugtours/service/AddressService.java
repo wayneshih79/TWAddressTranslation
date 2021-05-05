@@ -20,25 +20,31 @@ public class AddressService {
         Address address = AddressProcessUtil.parseAddress(replaceAddress);
         /** TO DO seperate city and region **/
         address.setTranCity(addressMap.get(address.getCity() + address.getRegion()));
-        address.setTranVillage(addressMap.get(address.getVillage()));
-        address.setTranRoad(addressMap.get(address.getRoad()));
+        /** we combine village, road and alley **/
+        address.setTranVillage(addressMap.get(
+                StringUtils.defaultString(address.getVillage()) +
+                StringUtils.defaultString(address.getRoad()) +
+                StringUtils.defaultString(address.getSection()) +
+                StringUtils.defaultString(address.getAlley())
+                )
+        );
         // translate
-        if (address.getAlley() != null) {
-            address.setTranAlley(address.getAlley().replace("弄", " Alley"));
-        }
         if (address.getNo() != null) {
-            address.setTranNo(address.getNo().replace("號", " No"));
+            address.setTranNo("No. " + address.getNo().replace("號", ""));
         }
         if (address.getFloor() != null) {
-            address.setFloor(address.getFloor().replace("樓", " Floor"));
+            address.setTranFloor(address.getFloor().replace("樓", " F."));
         }
-        String translateAddress = StringUtils.defaultString(address.getZipcode()) + " " +
-                StringUtils.defaultString(address.getOthers()) + " " +
-                StringUtils.defaultString(address.getTranFloor()) + " " +
-                StringUtils.defaultString(address.getTranNo()) + " " +
-                StringUtils.defaultString(address.getTranAlley()) + " " +
-                StringUtils.defaultString(address.getTranRoad()) + " " +
-                StringUtils.defaultString(address.getTranCity());
+        String translateAddress =
+                AddressProcessUtil.appendIfNotEmpty(address.getOthers(), ", ") +
+                AddressProcessUtil.appendIfNotEmpty(address.getTranFloor(), ", ") +
+                AddressProcessUtil.appendIfNotEmpty(address.getTranNo(), ", ") +
+                //AddressProcessUtil.appendIfNotEmpty(address.getTranAlley()) + combine with road according to csv
+                //AddressProcessUtil.appendIfNotEmpty(address.getTranRoad(), ", ") +
+                AddressProcessUtil.appendIfNotEmpty(address.getTranVillage(), ", ") +
+                AddressProcessUtil.appendIfNotEmpty(address.getTranCity(), " ") +
+                AddressProcessUtil.appendIfNotEmpty(address.getZipcode(), "") +
+                        ", " + address.getCountry();
 
         if (translateAddress == null) {
             throw new RuntimeException("can't find address");

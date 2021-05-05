@@ -31,21 +31,26 @@ class Home extends Component {
             <div>
                 <AppNavbar/>
                 <Container fluid>
-                    <Button color="link"><Link to="/groups">Manage JUG Tour</Link></Button>
-                            <Row>
-                            <Label for="address">地址</Label>
+                            <Row className='mt-2'>
+                            <Col><Label for="address">中文地址</Label></Col>
                             </Row>
-                            <Row>
-                            <Col xs="10">
+                            <Row className='mt-2'>
+                            <Col xs="4">
                             <Input type="address" name="address" id="address" placeholder="請輸入地址" onChange={this.handleAddressInputChange} />
                             </Col>
                             </Row>
-                            <Button onClick={this.clickHandler.bind(this)}>Submit</Button>
-                            <Row>
+                            <Row className='mt-2'>
+                            <Col xs={{ size: '4', offset: 4 }}>
+                            <Button onClick={this.clickHandler.bind(this)}>翻譯</Button>
+                            </Col>
+                            </Row>
+                            <Row className='mt-2'>
                             <Label for="addressResult">英文地址</Label>
                             </Row>
-                            <Row>
+                            <Row className='mt-2'>
+                            <Col xs="6">
                             <Input type="addressResult" name="addressResult" id="addressResult" value={this.state.translateAddress}/>
+                            </Col>
                             </Row>
                 </Container>
             </div>

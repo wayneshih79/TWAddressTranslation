@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class Address {
+    private String country;
     private String address;
     private String tranAddress;
     /** 郵遞區號 **/
@@ -30,6 +31,10 @@ public class Address {
     /** 路 **/
     private String road;
     private String tranRoad;
+
+    /** 段 **/
+    private String section;
+    private String tranSection;
 
     /** 弄 **/
     private String alley;
