@@ -1,4 +1,4 @@
-package com.okta.developer.jugtours.web;
+package com.okta.developer.jugtours.controller;
 
 import com.okta.developer.jugtours.model.Group;
 import com.okta.developer.jugtours.model.GroupRepository;
